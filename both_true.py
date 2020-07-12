@@ -89,9 +89,9 @@ lr = .7
 
 # a = flat_it(a).reshape(x_shape)
 
-guess = np.array([1, 1])
+guess = np.array([0, 1])
 
-print("Initial guess:", 1 if z(guess, w, b) > .5 else 0)
+print("Initial guess:", 1 if z(guess, w, b) >= .5 else 0)
 print()
 print("Training...")
 print()
@@ -119,5 +119,5 @@ print(f'The weight is now {w}')
 print(f'The bias is now {b}\n')
 
 
-print("New guess:", 1 if z(guess, w, b) > .5 else 0)
+print("New guess:", 1 if z(guess, w, b) >= .5 else 0)
 print()
