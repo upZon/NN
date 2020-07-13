@@ -1,6 +1,6 @@
 import numpy as np
-np.seterr(divide='ignore')
-np.seterr(invalid='ignore')
+# np.seterr(divide='ignore')
+# np.seterr(invalid='ignore')
 
 
 # APPLY SIG
@@ -74,7 +74,7 @@ def grad(a, x, y, w, b, m, lr):
 # DEFINE INPUTS, OUTPUTS, WEIGHTS, BIAS
 # x = (4, 2) (m, f)
 # y = (4, 1) (m, o)
-# w = (2, 1) (o, f)
+# w = (2, 1) (f, o)
 
 x = np.array([[0, 0],
               [0, 1],
@@ -102,7 +102,7 @@ j = cost(a, y, m)
 i = 0
 while j > GOAL:
     a = z(x, w, b)
-    if i % 1000 == 0:  # PLOT GRAPH AT SPECIFIED ITERATION
+    if i % 1000 == 0:  # PRINT COST VALUE AT SPECIFIED ITERATION
         print(j)
         # pass
     elif j < GOAL:
