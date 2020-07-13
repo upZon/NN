@@ -3,29 +3,29 @@ import numpy as np
 # np.seterr(invalid='ignore')
 
 
-# APPLY SIG
+# APPLY SIGMOID
 def sig(z):
     return 1 / (1 + (np.e**(-z)))
 
 
 # DEFINE Z
 def z(x, w, b):
-    # x (4, 2) @ w (2, 1) --> (4, 1)
+    # x (4, 2) @ w (2, 1) ---> (4, 1)
     return sig(np.dot(x, w) + b)
 
 
-# APPLY DECISION BOUNDARY
-def decision_boundary(prob):
-    return 1 if prob >= 0.5 else 0
+# # APPLY DECISION BOUNDARY (NOT USED)
+# def decision_boundary(prob):
+#     return 1 if prob >= 0.5 else 0
 
 
-# PREPARE VECTOR FOR DECISION BOUNDARY
-def flat_it(predictions):
-    dbound = np.vectorize(decision_boundary)  # makes function a loop
-    return dbound(predictions).flatten()  # makes vector 1 row
+# # PREPARE VECTOR FOR DECISION BOUNDARY (NOT USED)
+# def flat_it(predictions):
+#     dbound = np.vectorize(decision_boundary)  # makes function a loop
+#     return dbound(predictions).flatten()  # makes vector 1 row
 
 
-# DEFINE COST FUNCTION
+# DEFINE COST FUNCTION (TO MONITOR PROGRESS)
 def cost(a, y, m):
 
     # COST FUNCTION IN ONE PIECE
@@ -46,7 +46,7 @@ def cost(a, y, m):
     return cost
 
 
-# APPLY GRADIENT DESCENT
+# APPLY GRADIENT DESCENT (WHERE THE MAGIC HAPPENS)
 def grad(a, x, y, w, b, m, lr):
 
     # a = (4, 1)
@@ -56,68 +56,75 @@ def grad(a, x, y, w, b, m, lr):
 
     # dw = x.T (2, 4) @ [a - y] (4, 1) ---> (2, 1)
 
+    # GET DERIAVATIVE OF WEIGHTS
     dw = np.dot(x.T, (a - y))
     dw /= m
 
+    # GET DERIAVATIVE OF BIAS
     db = np.sum(a - y)
     db /= m
 
+    # APPLY LEARNING RATE
     dw *= lr
     db *= lr
 
+    # UPDATE WEIGHTS AND BIAS
     w = w - dw  # w (2, 1) - dw (2, 1)
     b = b - db
 
     return w, b
 
 
-# DEFINE INPUTS, OUTPUTS, WEIGHTS, BIAS
+# DEFINE INPUTS, OUTPUTS, WEIGHTS, BIAS, ROWS,
+#                           GOAL, LEARNING RATE, & QUIZ ARRAY
+
 # x = (4, 2) (m, f)
 # y = (4, 1) (m, o)
 # w = (2, 1) (f, o)
 
+# DATA SAMPLE
 x = np.array([[0, 0],
               [0, 1],
               [1, 0],
               [1, 1]])
-y = np.array([0, 0, 0, 1]).reshape(4, 1)
+
+y = np.array([0, 0, 0, 1]).reshape(4, 1)  # DESIRED OUTPUTS
 w = np.zeros((2, 1))  # INITIAL WEIGHTS
 b = 0  # INITIAL BIAS
 m = np.size(y)  # TOTAL NUMBER OF ROWS
-GOAL = 0.009
-lr = .7
+GOAL = 0.009  # COST GOAL TO END LEARNING LOOP
+lr = .7  # LEARNING RATE
 
-# a = flat_it(a).reshape(x_shape)
+guess = np.array([0, 1])  # QUIZ ARRAY
 
-guess = np.array([0, 1])
-
+# QUIZ BEFORE TRAINING
 print("Initial guess:", 1 if z(guess, w, b) >= .5 else 0)
 print()
 print("Training...")
 print()
 
 # LEARNING LOOP
-a = z(x, w, b)
-j = cost(a, y, m)
+a = z(x, w, b)  # INITIAL ACTIVATION VARIABLE
+j = cost(a, y, m)  # INITIAL COST VARIABLE
 i = 0
 while j > GOAL:
-    a = z(x, w, b)
+    a = z(x, w, b)  # UPDATE ACTIVATION VARIABLE
     if i % 1000 == 0:  # PRINT COST VALUE AT SPECIFIED ITERATION
         print(j)
-        # pass
-    elif j < GOAL:
+    elif j < GOAL:  # END LEARNING LOOP AT SPECIFIED GOAL
         print(j)
         break
-    w, b = grad(a, x, y, w, b, m, lr)
-    j = cost(a, y, m)
+    w, b = grad(a, x, y, w, b, m, lr)  # ACTIVATE GRADIENT DESCENT
+    j = cost(a, y, m)  # UPDATE COST VARIABLE (TO MONITOR PROGRESS)
     i += 1
     # print(j)
 
+# PRINT FINAL WEIGHTS, BIAS, AND ITERATION COUNT
 print(" ")
 print(f'The minimum occurs at {i}')
 print(f'The weight is now {w}')
 print(f'The bias is now {b}\n')
 
-
+# QUIZ AFTER TRAINING
 print("New guess:", 1 if z(guess, w, b) >= .5 else 0)
 print()
