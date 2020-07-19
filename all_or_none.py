@@ -18,6 +18,12 @@ class NN:
         self.w2 = np.random.randn(self.hidden_units, self.output_units)
         self.b = np.zeros((1, 3))  # SKIPPING [0][0] SO LAYERS LOOK PRETTY
 
+        self.w1 = np.array([[0.47544028, -1.78209857],
+                            [0.49093855, -0.71385776]])
+
+        self.w2 = np.array([[-0.55405079],
+                            [0.90687743]])
+
         # INITIALIZE LEARING RATE (ALPHA)
         self.lr = lr
 
@@ -72,10 +78,8 @@ class NN:
     def back_props(self):
 
         # DEFINE DELTA3
-        # a3 (4x1) - y (4x1) ---> (4x1) "loss"
-        # a3 (4x1) * [1 - a3] (4x1) ---> (4x1) "sigdiv3"
-        # loss (4x1) * sigdiv3 (4x1) ---> (4x1) "delta3"
-        self.delta3 = np.multiply((self.a3 - self.y), self.sig_dash(self.a3))
+        # a3 (4x1) - y (4x1) ---> (4x1) "delta3"
+        self.delta3 = (self.a3 - self.y)
 
         # GET DERIAVATIVE OF W2 & B2
         # a2.T (2x4) @ delta3 (4x1) ---> (2x1) "dw2"
