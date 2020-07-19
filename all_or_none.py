@@ -18,12 +18,6 @@ class NN:
         self.w2 = np.random.randn(self.hidden_units, self.output_units)
         self.b = np.zeros((1, 3))  # SKIPPING [0][0] SO LAYERS LOOK PRETTY
 
-        self.w1 = np.array([[0.47544028, -1.78209857],
-                            [0.49093855, -0.71385776]])
-
-        self.w2 = np.array([[-0.55405079],
-                            [0.90687743]])
-
         # INITIALIZE LEARING RATE (ALPHA)
         self.lr = lr
 
