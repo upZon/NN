@@ -33,7 +33,7 @@ class NN:
     def cost(self):
 
         # COST FUNCTION IN ONE PIECE
-        # error = -1 * ((y * np.log(a)) + ((1 - y) * np.log(1 - a)))
+        # error = (-1 * ((y * np.log(a)) + ((1 - y) * np.log(1 - a)))) / self.m
 
         # ERROR WHEN Y == 1
         error_class1 = -y * np.log(self.a3)
@@ -78,6 +78,7 @@ class NN:
         # GET DERIAVATIVE OF W2 & B2
         # a2.T (2x4) @ delta3 (4x1) ---> (2x1) "dw2"
         self.dw2 = np.dot(self.a2.T, self.delta3)
+        self.dw2 / self.m
         self.db2 = self.delta3.sum() / self.m
 
         # DEFINE DELTA2
@@ -90,6 +91,7 @@ class NN:
         # GET DERIAVATIVE OF W1 & B1
         # features.T (2x4) @ delta2 (4x2) ---> (2x2) "dw1"
         self.dw1 = np.dot(self.features.T, self.delta2)
+        self.dw1 / self.m
         self.db1 = self.delta2.sum() / self.m
 
         # APPLY LEARNING RATE
@@ -140,11 +142,11 @@ if __name__ == '__main__':
     print('Initial Guess3:', 1 if nn.forward_props(guess3) >= 0.5 else 0)
     print('Initial Guess4:', 1 if nn.forward_props(guess4) >= 0.5 else 0)
     print()
-    print("Training...")
+    print("Learning...")
     print()
 
-    i = 0
-    j = 1
+    i = 0  # ITERATION COUNTER
+    j = 1  # STARTING COSTS
 
     # LEARNING LOOP
     while j > GOAL:
@@ -168,8 +170,8 @@ if __name__ == '__main__':
     print(f'The final biases: {nn.b[0][1:]}\n')
 
     # QUIZ AFTER TRAINING
-    print('New Guess1:', 1 if nn.forward_props(guess1) >= 0.5 else 0)
-    print('New Guess2:', 1 if nn.forward_props(guess2) >= 0.5 else 0)
-    print('New Guess3:', 1 if nn.forward_props(guess3) >= 0.5 else 0)
-    print('New Guess4:', 1 if nn.forward_props(guess4) >= 0.5 else 0)
+    print('New Guess1:', 1 if nn.forward_props(guess1) >= 0.5 else 0)  # 1
+    print('New Guess2:', 1 if nn.forward_props(guess2) >= 0.5 else 0)  # 0
+    print('New Guess3:', 1 if nn.forward_props(guess3) >= 0.5 else 0)  # 0
+    print('New Guess4:', 1 if nn.forward_props(guess4) >= 0.5 else 0)  # 1
     print()

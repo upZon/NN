@@ -95,29 +95,28 @@ m = np.size(y)  # TOTAL NUMBER OF ROWS
 GOAL = 0.009  # COST GOAL TO END LEARNING LOOP
 lr = .7  # LEARNING RATE
 
-guess = np.array([0, 1])  # QUIZ ARRAY
+guess = np.array([0, 0])  # QUIZ ARRAY
 
 # QUIZ BEFORE TRAINING
 print("Initial guess:", 1 if z(guess, w, b) >= .5 else 0)
 print()
-print("Training...")
+print("Learning...")
 print()
 
+
+j = 1  # STARTING COST
+i = 0  # ITERATION COUNTER
+
 # LEARNING LOOP
-a = z(x, w, b)  # INITIAL ACTIVATION VARIABLE
-j = cost(a, y, m)  # INITIAL COST VARIABLE
-i = 0
 while j > GOAL:
     a = z(x, w, b)  # UPDATE ACTIVATION VARIABLE
     if i % 1000 == 0:  # PRINT COST VALUE AT SPECIFIED ITERATION
         print(j)
-    elif j < GOAL:  # END LEARNING LOOP AT SPECIFIED GOAL
-        print(j)
-        break
     w, b = grad(a, x, y, w, b, m, lr)  # ACTIVATE GRADIENT DESCENT
     j = cost(a, y, m)  # UPDATE COST VARIABLE (TO MONITOR PROGRESS)
     i += 1
-    # print(j)
+
+print(j)  # PRINT FINAL COST
 
 # PRINT FINAL WEIGHTS, BIAS, AND ITERATION COUNT
 print(" ")
