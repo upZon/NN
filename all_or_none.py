@@ -1,4 +1,5 @@
 import numpy as np
+from professor import profile
 
 
 class NN:
@@ -36,10 +37,10 @@ class NN:
         # error = (-1 * ((y * np.log(a)) + ((1 - y) * np.log(1 - a)))) / self.m
 
         # ERROR WHEN Y == 1
-        error_class1 = -y * np.log(self.a3)
+        error_class1 = -self.y * np.log(self.a3)
 
         # ERROR WHEN Y == 0
-        error_class0 = (1 - y) * np.log(1 - self.a3)
+        error_class0 = (1 - self.y) * np.log(1 - self.a3)
 
         # SUM OF BOTH ERRORS
         error = error_class1 - error_class0

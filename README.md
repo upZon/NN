@@ -26,3 +26,15 @@ Designed for two inputs, 0 or 1.
 Outputs 1 if both inputs are 1 or 0, 0 for everything else.
 
 -------------------------------------------------------------
+
+fake_trues:
+
+1 input layer with 1 unit.
+1 output layer with 2 units.
+
+Designed for a single input, 0 or 1.
+Outputs 1s if input is 0
+Outputs 0s if input is 1
+(note: an input of 0 always outputs 1s, swap 'DESIRED OUTPUTS' in training data to really test it)
+
+-------------------------------------------------------------

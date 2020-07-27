@@ -14,22 +14,11 @@ def z(x, w, b):
     return sig(np.dot(x, w) + b)
 
 
-# # APPLY DECISION BOUNDARY (NOT USED)
-# def decision_boundary(prob):
-#     return 1 if prob >= 0.5 else 0
-
-
-# # PREPARE VECTOR FOR DECISION BOUNDARY (NOT USED)
-# def flat_it(predictions):
-#     dbound = np.vectorize(decision_boundary)  # makes function a loop
-#     return dbound(predictions).flatten()  # makes vector 1 row
-
-
 # DEFINE COST FUNCTION (TO MONITOR PROGRESS)
 def cost(a, y, m):
 
     # COST FUNCTION IN ONE PIECE
-    # cost = -1 * ((y * np.log(a)) + ((1 - y) * np.log(1 - a)))
+    # cost = (-1 * ((y * np.log(a)) + ((1 - y) * np.log(1 - a)))) / m
 
     # ERROR WHEN Y == 1
     cost_class1 = -y * np.log(a)
