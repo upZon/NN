@@ -9,7 +9,7 @@ class NN:
         self.hidden_units = 2
         self.output_units = 1
 
-        # VARIABLIZE (yep) GUESS, OUTPUTS, # OF ROWS
+        # VARIABLIZE (yep) INPUTS, OUTPUTS, # OF ROWS
         self.features = x  # (4x2)
         self.y = y  # (4x1)
         self.m = m
@@ -57,7 +57,7 @@ class NN:
         else:
             features = self.features
 
-        # *** NOTE: THE INPUTS ARE LAYER 1 *** #
+        # *** NOTE: THE INPUTS ARE LAYER 1 (a1) *** #
 
         # ACTIVATE ON LAYER 2
         # features (4x2) @ w1 (2x2) ---> (4x2) "a2"

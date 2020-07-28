@@ -38,3 +38,14 @@ Outputs 0s if input is 1
 (note: an input of 0 always outputs 1s, swap 'DESIRED OUTPUTS' in training data to really test it)
 
 -------------------------------------------------------------
+
+traffic_light:
+
+1 input layer with 2 units.
+1 hidden layer with 3 units
+1 output layer with 4 units.
+
+Designed for two inputs, 0 or 1.
+00 = RED, 01 or 10 = Yellow, 11 = Green
+
+-------------------------------------------------------------
