@@ -42,10 +42,10 @@ Outputs 0s if input is 1.
 traffic_light:
 
 1 input layer with 2 units.
-1 hidden layer with 3 units
+1 hidden layer with 3 units.
 1 output layer with 4 units.
 
 Designed for two inputs, 0 or 1.
-00 = RED, 01 or 10 = Yellow, 11 = Green
+00 = RED, 01 or 10 = Yellow, 11 = Green.
 
 -------------------------------------------------------------
